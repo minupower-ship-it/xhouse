@@ -64,7 +64,7 @@
     #result {
       margin-top: 30px;
       font-size: 1.15rem;
-      min-height: 100px;
+      min-height: 120px;
     }
     .link {
       background: #1a1a2e;
@@ -82,25 +82,34 @@
 
   <div class="container">
     <div class="success-icon">✅</div>
-    <h1>Payment Completed!</h1>
-    <p>Thank you. We will generate your B server invite link.</p>
+    <h1>Payment Successful!</h1>
+    <p>Thank you for your purchase.</p>
 
     <div class="card">
       <button onclick="getInviteLink()" class="btn" id="inviteBtn">
-        Get B Server One-Time Invite Link
+        Generate B Server One-Time Invite Link
       </button>
 
       <div id="result"></div>
     </div>
 
     <p style="opacity: 0.7; font-size: 1rem;">
-      ※ This link is <strong>one-time use only</strong>.<br>
-      Please enter immediately.
+      ※ This link is for <strong>one-time use only</strong>.<br>
+      Please join immediately after receiving it.
     </p>
   </div>
 
   <script>
     async function getInviteLink() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const sessionId = urlParams.get('session_id');
+
+      if (!sessionId) {
+        document.getElementById('result').innerHTML = 
+          `<p style="color:#ff5555;">Error: No session ID found.</p>`;
+        return;
+      }
+
       const btn = document.getElementById('inviteBtn');
       const resultDiv = document.getElementById('result');
 
@@ -110,7 +119,10 @@
       try {
         const response = await fetch('https://your-render-url.onrender.com/create-invite', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            session_id: sessionId 
+          })
         });
 
         const data = await response.json();
@@ -125,7 +137,7 @@
           resultDiv.innerHTML = `<p style="color:#ff5555;">Error: ${data.error || 'Unknown error'}</p>`;
         }
       } catch (err) {
-        resultDiv.innerHTML = `<p style="color:#ff5555;">Server connection error.</p>`;
+        resultDiv.innerHTML = `<p style="color:#ff5555;">Server connection error. Please try again.</p>`;
       }
     }
   </script>

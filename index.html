@@ -1,268 +1,289 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>X-House - VIP Community</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(145deg, #0a0a0f 0%, #12121f 40%, #1a0f2e 100%);
-      color: #e0e0e0;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-House - VIP Community</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(145deg, #0a0a0f 0%, #12121f 40%, #1a0f2e 100%);
+  color: #e0e0e0;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* Top Logo */
-    .top-logo {
-      text-align: center;
-      padding: 35px 0 15px;
-      font-size: 3.2rem;
-      font-weight: 700;
-      letter-spacing: -2.5px;
-      color: #ffffff;
-      text-shadow: 0 0 25px rgba(120, 100, 255, 0.5);
-    }
+/* Top Logo */
+.top-logo {
+  text-align: center;
+  padding: 35px 0 15px;
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: -2.5px;
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(120, 100, 255, 0.5);
+}
 
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 60px 20px 80px;
-    }
-    .hero h1 {
-      font-size: 4.1rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-      color: #fff;
-    }
-    .hero .members {
-      font-size: 1.35rem;
-      background: rgba(255,255,255,0.08);
-      display: inline-block;
-      padding: 14px 32px;
-      border-radius: 40px;
-      margin-bottom: 30px;
-      backdrop-filter: blur(10px);
-    }
-    .hero .members span.active {
-      color: #39ff9e;
-      text-shadow: 0 0 15px #39ff9e, 0 0 30px #39ff9e;
-      font-weight: 700;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #39ff9e; }
-      to { text-shadow: 0 0 25px #39ff9e, 0 0 40px #39ff9e; }
-    }
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 60px 20px 80px;
+}
+.hero h1 {
+  font-size: 4.1rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #fff;
+}
+.hero .members {
+  font-size: 1.35rem;
+  background: rgba(255,255,255,0.08);
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 40px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+}
+.hero .members span.active {
+  color: #39ff9e;
+  text-shadow: 0 0 15px #39ff9e, 0 0 30px #39ff9e;
+  font-weight: 700;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px #39ff9e; }
+  to   { text-shadow: 0 0 25px #39ff9e, 0 0 40px #39ff9e; }
+}
+.hero p {
+  font-size: 1.42rem;
+  max-width: 720px;
+  margin: 0 auto 40px;
+  opacity: 0.9;
+}
 
-    .hero p {
-      font-size: 1.42rem;
-      max-width: 720px;
-      margin: 0 auto 40px;
-      opacity: 0.9;
-    }
+/* Pricing */
+.pricing { padding: 40px 20px 100px; }
+.pricing h2 {
+  text-align: center;
+  font-size: 2.7rem;
+  margin-bottom: 65px;
+  color: #ddd;
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  max-width: 1250px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.card {
+  background: rgba(20, 20, 35, 0.75);
+  border: 1px solid rgba(100, 100, 180, 0.2);
+  border-radius: 22px;
+  padding: 40px 32px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  transition: all 0.4s;
+  position: relative;
+  backdrop-filter: blur(15px);
+  flex: 1;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-12px);
+  border-color: #7b6eff;
+  box-shadow: 0 30px 60px rgba(123,110,255,0.25);
+}
+.card.popular {
+  border-color: #7b6eff;
+  background: rgba(30, 25, 60, 0.85);
+  box-shadow: 0 25px 55px rgba(123,110,255,0.35);
+}
+.badge {
+  position: absolute;
+  top: -16px;
+  right: 30px;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+.limited { background: #ff2d55; color: white; }
+.ultra   { background: #f5c400; color: #1a1a1a; font-weight: 800; }
 
-    /* Pricing Section */
-    .pricing {
-      padding: 40px 20px 100px;
-    }
-    .pricing h2 {
-      text-align: center;
-      font-size: 2.7rem;
-      margin-bottom: 65px;
-      color: #ddd;
-    }
+.card h3 {
+  font-size: 1.85rem;
+  margin-bottom: 12px;
+  text-align: center;
+  color: #fff;
+}
+.price {
+  font-size: 3.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 10px 0 10px;
+  color: #fff;
+}
+.original-price {
+  text-decoration: line-through;
+  color: #777;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 22px;
+}
+ul { list-style: none; margin: 32px 0 35px; flex-grow: 1; }
+ul li {
+  padding: 10px 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: flex-start;
+  color: #ccc;
+}
+ul li:before {
+  content: "✔";
+  color: #4ade80;
+  margin-right: 15px;
+  font-size: 1.25rem;
+}
 
-    .cards {
-      display: flex;
-      flex-direction: row;
-      gap: 28px;
-      max-width: 1250px;
-      margin: 0 auto;
-      justify-content: center;
-    }
+/* 버튼 */
+.btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 18px 20px;
+  font-size: 1.22rem;
+  font-weight: 600;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 15px;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+.btn-lifetime { background: #22c55e; color: white; }
+.btn-vip      { background: #eab308; color: #1f1f1f; font-weight: 700; }
+.btn:hover:not(:disabled) {
+  transform: scale(1.06);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+}
 
-    .card {
-      background: rgba(20, 20, 35, 0.75);
-      border: 1px solid rgba(100, 100, 180, 0.2);
-      border-radius: 22px;
-      padding: 40px 32px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      transition: all 0.4s;
-      position: relative;
-      backdrop-filter: blur(15px);
-      flex: 1;
-      max-width: 460px;
-    }
-    .card:hover {
-      transform: translateY(-12px);
-      border-color: #7b6eff;
-      box-shadow: 0 30px 60px rgba(123, 110, 255, 0.25);
-    }
-    .card.popular {
-      border-color: #7b6eff;
-      background: rgba(30, 25, 60, 0.85);
-      box-shadow: 0 25px 55px rgba(123, 110, 255, 0.35);
-    }
-
-    .badge {
-      position: absolute;
-      top: -16px;
-      right: 30px;
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-    }
-    .limited { background: #ff2d55; color: white; }
-    .ultra { background: #f5c400; color: #1a1a1a; font-weight: 800; }
-
-    .card h3 {
-      font-size: 1.85rem;
-      margin-bottom: 12px;
-      text-align: center;
-      color: #fff;
-    }
-    .price {
-      font-size: 3.6rem;
-      font-weight: 700;
-      text-align: center;
-      margin: 10px 0 10px;
-      color: #fff;
-    }
-    .original-price {
-      text-decoration: line-through;
-      color: #777;
-      text-align: center;
-      font-size: 1.2rem;
-      margin-bottom: 22px;
-    }
-
-    ul {
-      list-style: none;
-      margin: 32px 0 35px;
-    }
-    ul li {
-      padding: 10px 0;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: flex-start;
-      color: #ccc;
-    }
-    ul li:before {
-      content: "✔";
-      color: #4ade80;
-      margin-right: 15px;
-      font-size: 1.25rem;
-    }
-
-    .btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 18px 20px;
-      font-size: 1.22rem;
-      font-weight: 600;
-      border-radius: 14px;
-      text-decoration: none;
-      transition: all 0.3s;
-      margin-top: 15px;
-    }
-    .btn-lifetime { background: #22c55e; color: white; }
-    .btn-vip { background: #eab308; color: #1f1f1f; font-weight: 700; }
-
-    .btn:hover { 
-      transform: scale(1.06); 
-      box-shadow: 0 12px 25px rgba(0,0,0,0.5);
-    }
-
-    @media (max-width: 768px) {
-      .cards { flex-direction: column; }
-      .hero h1 { font-size: 3.4rem; }
-    }
-  </style>
+@media (max-width: 768px) {
+  .cards  { flex-direction: column; }
+  .hero h1 { font-size: 3.4rem; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Top Logo -->
-  <div class="top-logo">X-House</div>
+<!-- Top Logo -->
+<div class="top-logo">X-House</div>
 
-  <!-- Hero -->
-  <div class="hero">
-    <div class="container">
-      <div class="members" id="active-members">
-        Join Our VIP Community • <span class="active">2026 MARCH ACTIVE</span>
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <div class="members" id="active-members">
+      Join Our VIP Community • <span class="active">2026 MARCH ACTIVE</span>
+    </div>
+    <h1>Premium Access Awaits</h1>
+    <p>Unlock exclusive Discord server with massive model packages and private request features.</p>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div class="pricing" id="pricing">
+  <div class="container">
+    <h2>Choose Your Plan</h2>
+    <div class="cards">
+
+      <!-- Lifetime -->
+      <div class="card popular">
+        <div class="badge limited">🔥 LIMITED SALE</div>
+        <h3>Lifetime</h3>
+        <div class="original-price">$55.00</div>
+        <div class="price">$45</div>
+        <div style="text-align:center; color:#aaa;">one-time payment</div>
+        <ul>
+          <li>Private request bot</li>
+          <li>Exclusive content site</li>
+          <li>50,000 packages</li>
+          <li>Lifetime access to all channels</li>
+          <li>Priority support</li>
+        </ul>
+        <button id="btn-lifetime" onclick="checkout('lifetime')" class="btn btn-lifetime">Get Lifetime</button>
       </div>
-      <h1>Premium Access Awaits</h1>
-      <p>Unlock exclusive Discord server with massive model packages and private request features.</p>
+
+      <!-- VIP Lifetime -->
+      <div class="card">
+        <div class="badge ultra">✨ VIP</div>
+        <h3>VIP Lifetime</h3>
+        <div class="original-price">$90.00</div>
+        <div class="price">$80</div>
+        <div style="text-align:center; color:#aaa;">one-time payment</div>
+        <ul>
+          <li>Everything from Lifetime</li>
+          <li>Unlimited requests for life</li>
+          <li>3 months early access to new products</li>
+          <li>Private personal request bot</li>
+          <li>Instant content delivery</li>
+          <li>Highest priority support</li>
+        </ul>
+        <button id="btn-vip" onclick="checkout('vip')" class="btn btn-vip">Get VIP Lifetime</button>
+      </div>
+
     </div>
   </div>
+</div>
 
-  <!-- Pricing -->
-  <div class="pricing" id="pricing">
-    <div class="container">
-      <h2>Choose Your Plan</h2>
-      
-      <div class="cards">
+<script>
+// 월 자동 업데이트
+function updateActiveMonth() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const monthNames = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE",
+                      "JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+  const currentMonth = monthNames[now.getMonth()];
+  document.getElementById("active-members").innerHTML =
+    `Join Our VIP Community • <span class="active">${year} ${currentMonth} ACTIVE</span>`;
+}
+updateActiveMonth();
 
-        <!-- Lifetime -->
-        <div class="card popular">
-          <div class="badge limited">🔥 LIMITED SALE</div>
-          <h3>Lifetime</h3>
-          <div class="original-price">$55.00</div>
-          <div class="price">$45</div>
-          <div style="text-align:center; color:#aaa;">one-time payment</div>
-          <ul>
-            <li>Private request bot</li>
-            <li>Exclusive content site</li>
-            <li>50,000 packages</li>
-            <li>Lifetime access to all channels</li>
-            <li>Priority support</li>
-          </ul>
-          <a href="https://buy.stripe.com/8x26oJ7Nc3vy6EZbag1ck0h" class="btn btn-lifetime">Get Lifetime</a>
-        </div>
+// Checkout Session 생성
+async function checkout(plan) {
+  const btn = document.getElementById('btn-' + plan);
+  btn.disabled = true;
+  btn.textContent = "Loading...";
 
-        <!-- VIP Lifetime -->
-        <div class="card">
-          <div class="badge ultra">✨ VIP</div>
-          <h3>VIP Lifetime</h3>
-          <div class="original-price">$90.00</div>
-          <div class="price">$80</div>
-          <div style="text-align:center; color:#aaa;">one-time payment</div>
-          <ul>
-            <li>Everything from Lifetime</li>
-            <li>Unlimited requests for life</li>
-            <li>3 months early access to new products</li>
-            <li>Private personal request bot</li>
-            <li>Instant content delivery</li>
-            <li>Highest priority support</li>
-          </ul>
-          <a href="https://buy.stripe.com/4gM8wR5F4c24gfz7Y41ck0g" class="btn btn-vip">Get VIP Lifetime</a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- 자동 월 업데이트 스크립트 -->
-  <script>
-    function updateActiveMonth() {
-      const now = new Date();
-      const year = now.getFullYear();
-      const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", 
-                         "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-      const currentMonth = monthNames[now.getMonth()];
-      
-      const text = `Join Our VIP Community • <span class="active">${year} ${currentMonth} ACTIVE</span>`;
-      document.getElementById("active-members").innerHTML = text;
+  try {
+    const res = await fetch('https://xh-7vlt.onrender.com/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan })
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      btn.disabled = false;
+      btn.textContent = plan === 'vip' ? 'Get VIP Lifetime' : 'Get Lifetime';
     }
-
-    // 페이지 로드 시 실행
-    updateActiveMonth();
-  </script>
+  } catch (err) {
+    alert('서버 연결 오류. 잠시 후 다시 시도해주세요.');
+    btn.disabled = false;
+    btn.textContent = plan === 'vip' ? 'Get VIP Lifetime' : 'Get Lifetime';
+  }
+}
+</script>
 
 </body>
 </html>

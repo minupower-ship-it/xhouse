@@ -469,7 +469,7 @@
 
 <nav>
   <div class="logo">X-House</div>
-  <button class="nav-btn" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Purchase Now</button>
+  <button class="nav-btn" onclick="window.open('https://discord.gg/qWpdeefsXa','_blank')">Join Server</button>
 </nav>
 
 <!-- HERO -->
@@ -484,8 +484,9 @@
   <p>Exclusive access to thousands of model packages, private channels, and content that can't be found anywhere else — all in one place.</p>
 
   <div class="hero-btns">
-    <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Purchase Now →</button>
+    <button class="btn-primary" onclick="window.open('https://discord.gg/qWpdeefsXa','_blank')">Join Server →</button>
     <button class="btn-secondary" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">See FAQ</button>
+    <a href="https://discord.gg/qWpdeefsXa" target="_blank" class="btn-secondary" style="text-decoration:none; padding:16px 36px; border-radius:100px; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04); color:#f0eeff; font-family:'Outfit',sans-serif; font-size:1rem; font-weight:600; cursor:pointer; transition:all 0.3s;">Preview Server</a>
   </div>
 
   <div class="stats">
@@ -531,7 +532,7 @@
           <li>Lifetime access to all channels</li>
           <li>Priority support</li>
         </ul>
-        <button id="btn-lifetime" onclick="checkout('lifetime')" class="btn-card btn-lifetime">Get Lifetime Access</button>
+        <a href="https://discord.gg/qWpdeefsXa" target="_blank" class="btn-card btn-lifetime" style="text-decoration:none; display:block; text-align:center; padding:15px; border-radius:14px;">Join Server</a>
       </div>
 
       <div class="card">
@@ -552,7 +553,7 @@
           <li>Instant content delivery</li>
           <li>Highest priority support</li>
         </ul>
-        <button id="btn-vip" onclick="checkout('vip')" class="btn-card btn-vip">Get VIP Access</button>
+        <a href="https://discord.gg/qWpdeefsXa" target="_blank" class="btn-card btn-vip" style="text-decoration:none; display:block; text-align:center; padding:15px; border-radius:14px;">Join Server</a>
       </div>
     </div>
   </div>
@@ -613,25 +614,7 @@ function toggleFaq(el) {
   if (!isOpen) item.classList.add('open');
 }
 
-async function checkout(plan) {
-  const btn = document.getElementById('btn-' + plan);
-  btn.disabled = true;
-  btn.textContent = "Loading...";
-  try {
-    const res = await fetch('https://xh-7vlt.onrender.com/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan })
-    });
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      alert('Something went wrong. Please try again.');
-      btn.disabled = false;
-      btn.textContent = plan === 'vip' ? 'Get VIP Access' : 'Get Lifetime Access';
-    }
-  } catch (err) {
+ catch (err) {
     alert('Connection error. Please try again.');
     btn.disabled = false;
     btn.textContent = plan === 'vip' ? 'Get VIP Access' : 'Get Lifetime Access';

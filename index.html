@@ -546,7 +546,7 @@
           <li>Lifetime access to all channels</li>
           <li>Priority support</li>
         </ul>
-        <a href="https://discord.gg/qWpdeefsXa" target="_blank" class="btn-card btn-lifetime" style="text-decoration:none; display:block; text-align:center; padding:15px; border-radius:14px;">Get Lifetime Access</a>
+        <button onclick="startPayment('lifetime')" class="btn-card btn-lifetime" style="width:100%; display:block; text-align:center; padding:15px; border-radius:14px; border:none; cursor:pointer; font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700;">Get Lifetime Access</button>
       </div>
 
       <div class="card">
@@ -566,7 +566,7 @@
           <li>Instant content delivery</li>
           <li>Highest priority support</li>
         </ul>
-        <a href="https://discord.gg/qWpdeefsXa" target="_blank" class="btn-card btn-vip" style="text-decoration:none; display:block; text-align:center; padding:15px; border-radius:14px;">Get VIP Access</a>
+        <button onclick="startPayment('vip')" class="btn-card btn-vip" style="width:100%; display:block; text-align:center; padding:15px; border-radius:14px; border:none; cursor:pointer; font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700;">Get VIP Access</button>
       </div>
     </div>
   </div>
@@ -618,6 +618,9 @@
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   const now = new Date();
   document.getElementById('month-tag').textContent = `${now.getFullYear()} ${months[now.getMonth()]} — Active`;
+
+  const ref = new URLSearchParams(window.location.search).get('ref');
+  if (ref) localStorage.setItem('promoter_ref', ref);
 })();
 
 function toggleFaq(el) {
@@ -627,6 +630,24 @@ function toggleFaq(el) {
   if (!isOpen) item.classList.add('open');
 }
 
+async function startPayment(plan) {
+  const ref = localStorage.getItem('promoter_ref') || '';
+  try {
+    const res = await fetch('https://xh-7vlt.onrender.com/create-checkout-web', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan, ref })
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Error generating checkout. Please try again.');
+    }
+  } catch (e) {
+    alert('Server error. Please try again.');
+  }
+}
 </script>
 </body>
 </html>

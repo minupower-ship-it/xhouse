@@ -1,9 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-House — Exclusive Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #080810;
+    color: #f0eeff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .card {
+    background: #0f0f1a;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 24px;
+    padding: 60px 48px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c084fc;
+    border: 1px solid rgba(192,132,252,0.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    background: rgba(192,132,252,0.07);
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 30%, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  p {
+    color: #8b89a8;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  .divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin: 32px 0;
+  }
+  .btn-discord {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    background: #5865f2;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-bottom: 14px;
+  }
+  .btn-discord:hover { background: #4752c4; transform: translateY(-1px); }
+  .btn-payment {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: #f0eeff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-payment:hover { background: rgba(255,255,255,0.09); }
+  .note {
+    font-size: 0.8rem;
+    color: #8b89a8;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="badge">Exclusive Access</div>
+  <h1>Welcome to X-House</h1>
+  <p>Join our private Discord server to get access to 50,000+ exclusive model packages, private channels, and lifetime membership.</p>
+
+  <div class="divider"></div>
+
+  <a href="https://xh-7vlt.onrender.com/promo-join?ref=discount" class="btn-discord">
+    🎮 Join Discord Server
+  </a>
+  <a href="/" class="btn-payment">
+    💳 View Pricing & Pay
+  </a>
+
+  <p class="note">Already a member? <a href="https://discord.gg/qWpdeefsXa" style="color:#7c5cfc;">Open Discord</a></p>
+</div>
+
 <script>
   localStorage.setItem('promoter_ref', 'discount');
-  window.location.replace('/');
 </script>
-</head>
+
+</body>
 </html>

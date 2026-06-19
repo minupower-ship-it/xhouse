@@ -100,21 +100,12 @@
 
     <div class="card" style="margin-top: 24px;">
       <p style="font-size: 1.1rem; margin-bottom: 20px; opacity: 0.85;">
-        Already in the server? Enter your Discord User ID to claim your role directly.
+        Already in the server? Connect your Discord account to get your role instantly.
       </p>
-      <input
-        id="discordIdInput"
-        type="text"
-        placeholder="Your Discord User ID (e.g. 123456789012345678)"
-        style="width:100%; padding:14px; border-radius:10px; border:1px solid #7b6eff; background:#0f0f1a; color:#fff; font-size:1rem; margin-bottom:14px;"
-      />
-      <button onclick="claimRole()" class="btn" id="claimBtn" style="background:#7b6eff; box-shadow:0 10px 25px rgba(123,110,255,0.4);">
-        Claim My Role
-      </button>
-      <div id="claimResult" style="margin-top: 20px; font-size: 1.1rem;"></div>
-      <p style="margin-top: 16px; font-size: 0.85rem; opacity: 0.5;">
-        Settings → Advanced → Copy User ID (Developer Mode must be on)
-      </p>
+      <a id="discordOAuthBtn" href="#" onclick="startOAuth()" class="btn" style="background:#5865f2; box-shadow:0 10px 25px rgba(88,101,242,0.4); display:inline-block;">
+        🔗 Connect Discord
+      </a>
+      <div id="oauthResult" style="margin-top: 20px; font-size: 1.1rem;"></div>
     </div>
   </div>
 
@@ -159,43 +150,24 @@
         resultDiv.innerHTML = `<p style="color:#ff5555;">Server connection error. Please try again.</p>`;
       }
     }
-    async function claimRole() {
+    function startOAuth() {
       const urlParams = new URLSearchParams(window.location.search);
       const sessionId = urlParams.get('session_id');
-      const discordId = document.getElementById('discordIdInput').value.trim();
-
       if (!sessionId) {
-        document.getElementById('claimResult').innerHTML = '<p style="color:#ff5555;">Error: No session ID found.</p>';
+        document.getElementById('oauthResult').innerHTML = '<p style="color:#ff5555;">Error: No session ID found.</p>';
         return;
       }
-      if (!discordId || !/^\d{17,20}$/.test(discordId)) {
-        document.getElementById('claimResult').innerHTML = '<p style="color:#ff5555;">Please enter a valid Discord User ID (17-20 digits).</p>';
-        return;
-      }
+      window.location.href = `https://xh-7vlt.onrender.com/discord-auth?session_id=${sessionId}`;
+    }
 
-      const btn = document.getElementById('claimBtn');
-      btn.disabled = true;
-      btn.textContent = 'Claiming...';
-
-      try {
-        const res = await fetch('https://xh-7vlt.onrender.com/claim-role', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, discord_id: discordId })
-        });
-        const data = await res.json();
-        if (data.success) {
-          document.getElementById('claimResult').innerHTML = '<p style="color:#39ff9e;">✅ Role granted! Check your Discord server.</p>';
-        } else {
-          document.getElementById('claimResult').innerHTML = `<p style="color:#ff5555;">❌ ${data.error || 'Unknown error'}</p>`;
-          btn.disabled = false;
-          btn.textContent = 'Claim My Role';
-        }
-      } catch (err) {
-        document.getElementById('claimResult').innerHTML = '<p style="color:#ff5555;">Server connection error. Please try again.</p>';
-        btn.disabled = false;
-        btn.textContent = 'Claim My Role';
-      }
+    // OAuth 완료 후 리다이렉트 처리
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('claimed') === 'ok') {
+      document.getElementById('oauthResult').innerHTML = '<p style="color:#39ff9e;">✅ Role granted! Check your Discord server.</p>';
+      document.getElementById('discordOAuthBtn').style.display = 'none';
+    } else if (params.get('claimed') === 'already') {
+      document.getElementById('oauthResult').innerHTML = '<p style="color:#ffaa00;">⚠️ This session has already been claimed.</p>';
+      document.getElementById('discordOAuthBtn').style.display = 'none';
     }
   </script>
 

@@ -160,8 +160,19 @@
       window.location.href = `https://xh-7vlt.onrender.com/discord-auth?session_id=${sessionId}`;
     }
 
-    // OAuth 완료 후 리다이렉트 처리
     const params = new URLSearchParams(window.location.search);
+
+    // VIP 업그레이드 결제 완료 → 초대/OAuth 카드 숨기고 안내만 표시
+    if (params.get('upgrade') === '1') {
+      document.querySelector('h1').textContent = 'VIP Upgrade Complete!';
+      const lead = document.querySelector('.container > p');
+      if (lead) lead.textContent = 'Your VIP role has been granted. Enjoy your VIP-exclusive access!';
+      document.querySelectorAll('.card').forEach(c => c.style.display = 'none');
+      const note = document.querySelector('.container > p[style]');
+      if (note) note.style.display = 'none';
+    }
+
+    // OAuth 완료 후 리다이렉트 처리
     if (params.get('claimed') === 'ok') {
       document.getElementById('oauthResult').innerHTML = '<p style="color:#39ff9e;">✅ Role granted! Check your Discord server.</p>';
       document.getElementById('discordOAuthBtn').style.display = 'none';
